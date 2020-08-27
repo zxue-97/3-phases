@@ -22,28 +22,15 @@ int main(int argc, char** argv)
 
 int Viscous_velocity = 1; // 1 for capillary-viscous velocity scaling and 
 							// 0 for capillary-inertial veloity scaling 
-
-#if Viscous_velocity
-	f1.sigma = cfdbv.sigma_1 / cfdbv.sigma_12;
-	f2.sigma = cfdbv.sigma_2 / cfdbv.sigma_12;
-	f3.sigma = cfdbv.sigma_3 / cfdbv.sigma_12;
-	rho1 = cfdbv.Laplace * cfdbv.rho_1 / cfdbv.rho_1;
-	rho2 = cfdbv.Laplace * cfdbv.rho_2 / cfdbv.rho_1;
-	rho3 = cfdbv.Laplace * cfdbv.rho_3 / cfdbv.rho_1;
-	mu1 = cfdbv.mu_1 / cfdbv.mu_1;
-	mu2 = cfdbv.mu_2 / cfdbv.mu_1;
-	mu3 = cfdbv.mu_3 / cfdbv.mu_1;
-#else
-	f1.sigma = cfdbv.sigma_1 / cfdbv.sigma_12;
-	f2.sigma = cfdbv.sigma_2 / cfdbv.sigma_12;
-	f3.sigma = cfdbv.sigma_3 / cfdbv.sigma_12;
-	rho1 = cfdbv.rho_1 / cfdbv.rho_1;
-	rho2 = cfdbv.rho_2 / cfdbv.rho_1;
-	rho3 = cfdbv.rho_3 / cfdbv.rho_1;
-	mu1 = sqrt (1.0 / cfdbv.Laplace) * cfdbv.mu_1 / cfdbv.mu_1;
-	mu2 = sqrt (1.0 / cfdbv.Laplace) * cfdbv.mu_2 / cfdbv.mu_1;
-	mu3 = sqrt (1.0 / cfdbv.Laplace) * cfdbv.mu_3 / cfdbv.mu_1;
-#endif
+	f1.sigma = cfdbv.sigma_1;
+	f2.sigma = cfdbv.sigma_2;
+	f3.sigma = cfdbv.sigma_3;
+	rho1 = cfdbv.rho1;
+	rho2 = cfdbv.rho2;
+	rho3 = cfdbv.rho3;
+	mu1 = cfdbv.mu_1;
+	mu2 = cfdbv.mu_2;
+	mu3 = cfdbv.mu_3;
 	;
 	printf("initialgrid: %d\n", initialgrid);
 	printf("cfdbv.domainsize: %f\n", cfdbv.domainsize);

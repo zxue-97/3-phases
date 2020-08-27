@@ -287,9 +287,9 @@ void output_vtk_interface(char* name, scalar intrfc, double time, double rotatio
 
 int numericalmainvalues(char** argv, int argc, struct CFDValues* bvalues)
 {
-	bvalues->rho_1 = 1.0;
-	bvalues->mu_1 = 1.0;
-	bvalues->diameter = 1.0;
+	bvalues->sigma_12 	= 1.0;
+	bvalues->mu_1 		= 1.0;
+	bvalues->diameter 	= 1.0;
 	;
 	bvalues->Laplace = -1.0;
 	bvalues->pooldepth = -1.0;
@@ -323,7 +323,7 @@ int numericalmainvalues(char** argv, int argc, struct CFDValues* bvalues)
 	{
 		if (bvalues->Laplace < 0.0)
 			bvalues->Laplace = LAPLACE;
-		bvalues->sigma_12 = bvalues->Laplace * bvalues->mu_1 * bvalues->mu_1 / (bvalues->rho_1 * bvalues->diameter);
+		bvalues->rho_1 = bvalues->Laplace * bvalues->mu_1 * bvalues->mu_1 / (bvalues->sigma_12 * bvalues->diameter);
 		bvalues->rho_2 = RHO_2_OVER_RHO_1 * bvalues->rho_1;
 		bvalues->rho_3 = RHO_3_OVER_RHO_1 * bvalues->rho_1;
 		bvalues->mu_2 = MU_2_OVER_MU_1 * bvalues->mu_1;
